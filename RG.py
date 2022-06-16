@@ -1,6 +1,6 @@
 import streamlit as st
-import hydralit as hy
-#import hydralit_components as hc
+from streamlit_option_menu import option_menu
+import hydralit_components as hc
 import numpy as np
 import matplotlib.pyplot as plt
 import sympy as sp
@@ -10,18 +10,24 @@ import time
 from PIL import Image
 from matplotlib.patches import Circle
 import streamlit.components.v1 as components
+#lightbulb
+#sun
+selected = option_menu(options=["Introdução", "Corpos Massivos", "Raios de Luz"], icon=["card-text","box","brightness-high"], default_index=0, orientation='horizontal',
+)
+
 
 #st.set_page_config(page_title="Órbitas Relativísticas", page_icon=":star:")
 
-st.set_page_config(
-     page_title="Órbitas Relativisticas",
-     page_icon=":comet:")
+#st.set_page_config(
+ #    page_title="Órbitas Relativisticas",
+  #   page_icon=":comet:")
 
-app = hy.HydraApp()
+#app = hy.HydraApp()
 
 
-@app.addapp(title='Introdução', icon="📜")
-def my_home():
+#@app.addapp(title='Introdução', icon="📜")
+#def my_home():
+if selected == "Introdução":
     st.title("órbitas tipo-tempo para corpos massivos")
     st.subheader('Caso newtoniano')
     st.write("De acordo com a lei da gravitação universal de Newton, o campo gravitacional externo a um corpo esférico de massa  M  (situado na origem do sistema de coordenadas) é")
@@ -86,8 +92,9 @@ def my_home():
     st.write("Este simulador se destina ao estudo de órbitas relativisticas. Nele você pode simular o potencial efetivo e esboço de órbitas de corpos massivos e/ou raios de luz. Basta ir o menu na parte superior desta página e escolher a particula a ser analisada. Bom estudo!")
     
 
-@app.addapp(title='Corpos massivos', icon="🪨")
-def app2():
+#@app.addapp(title='Corpos massivos', icon="🪨")
+#def app2():
+if selected == "Corpos Massivos":
     st.title("Simulador para análise das órbitas relativísticas de corpos com massa")
     st.write("Funcionamento do programa: Seguindo os comandos abaixo, você deverá, primeiramente, inserir o valor do momento angular adimensional $L = Lc/(GMm)$. Em seguida, o programa exibirá o gráfico da energia potencial efetiva (adimensional). Você deverá então inserir o valor da energia da partícula teste, $E = E/(mc^2)$, que pode assumir qualquer valor maior que o mínimo de $U_{efetiva}^{(R)}$. O programa então retornará um gráfico correspondente à trajetória da partícula com esses parâmetros de energia e momento angular, para um corpo central com massa igual à do Sol.")
     st.subheader("Escolha o valor do momento angular adimensional $L>0$:")   
@@ -183,14 +190,12 @@ def app2():
         norbit = st.slider("Escolha entre 1 e 20",min_value=1, max_value=20, step = 1)
         
         if st.button('Gerar Órbita'):
-            import warnings
             import numpy as np
             import matplotlib.pyplot as plt
             import sympy as sp
             from scipy.integrate import quad
             import math 
             from matplotlib.patches import Circle
-            warnings.filterwarnings('ignore')
             if E==0:
                 E=E+1e-10
                 
@@ -303,8 +308,9 @@ def app2():
             st.checkbox('Limpar seleções')
             
 
-@app.addapp(title='Raios de luz', icon="💡")
-def app2():
+#@app.addapp(title='Raios de luz', icon="💡")
+#def app2():
+if selected == "Raios de Luz":
     st.title("Simulador para análise das órbitas relativísticas de raios de luz")
     st.write("Desta vez, a forma do potencial é fixa e está ilustrada abaixo. O máximo do potencial efetivo ocorre para $r = 1.5 r_g$.")
     imagepot = Image.open(r'C:/Users/isabe/.streamlit/potencialluz.png')
@@ -463,8 +469,7 @@ def app2():
             from scipy.integrate import quad
             import math
             from matplotlib.patches import Circle
-            import warnings
-            warnings.filterwarnings('ignore')
+    
 
             b = 2*d2
 
@@ -598,4 +603,4 @@ def app2():
                 st.checkbox('Limpar seleções')
 
 #Run the whole lot, we get navbar, state management and app isolation, all with this tiny amount of work.
-app.run()
+#app.run()
