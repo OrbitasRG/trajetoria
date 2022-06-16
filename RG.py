@@ -90,7 +90,7 @@ if selected == "Introdução":
     st.write(eq7)
     st.write("Aqui, $r_g = GM/c^2$ depende da massa do corpo central.")
     st.write("Nesse caso, o que cumpre o papel do parâmetro de 'energia' é o fator $1/d^2$, onde $d$ é o parâmetro de impacto do fóton, que pode ser obtido a partir da sua energia $e$ e momento angular $\ell$ como $d = c |\ell/e|$. Para entender o que d representa, considere um raio de luz que vem do infinito, se movendo paralelamente ao eixo $x$: o parâmetro de impacto $d$ é justamente a distância ao eixo-$x$, como mostra a figura abaixo.")
-    image = Image.open(r'C:/Users/isabe/.streamlit/parametro.jpg')
+    image = Image.open('parametro.jpg')
     st.image(image)
     
     st.title("Próximos passos")
@@ -316,7 +316,7 @@ elif selected == "Corpos Massivos":
 elif selected == "Raios de Luz":
     st.title("Simulador para análise das órbitas relativísticas de raios de luz")
     st.write("Desta vez, a forma do potencial é fixa e está ilustrada abaixo. O máximo do potencial efetivo ocorre para $r = 1.5 r_g$.")
-    imagepot = Image.open(r'C:/Users/isabe/.streamlit/potencialluz.png')
+    imagepot = Image.open('potencialluz.png')
     st.image(imagepot)
     st.write("Funcionamento do programa: Seguindo os comandos abaixo, você deverá inserir o valor do parâmetro de impacto (em unidades do raio gravitacional do corpo central). O programa então retornará um gráfico correspondente à trajetória da partícula com esses parâmetro de impacto. Em (1) você pode explorar uma faixa definida de valores de  $d$ ; em (2), você pode inserir o valor desejado diretamente.")
     st.subheader("(1) Escolha o valor do parâmetro de impacto $d$, em unidades de $r_g$:")   
