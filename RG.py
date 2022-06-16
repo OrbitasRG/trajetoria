@@ -318,9 +318,9 @@ elif selected == "Raios de Luz":
     st.write("Desta vez, a forma do potencial é fixa e está ilustrada abaixo. O máximo do potencial efetivo ocorre para $r = 1.5 r_g$.")
     imagepot = Image.open('potencialluz.png')
     st.image(imagepot)
-    st.write("Funcionamento do programa: Seguindo os comandos abaixo, você deverá inserir o valor do parâmetro de impacto (em unidades do raio gravitacional do corpo central). O programa então retornará um gráfico correspondente à trajetória da partícula com esses parâmetro de impacto. Em (1) você pode explorar uma faixa definida de valores de  $d$ ; em (2), você pode inserir o valor desejado diretamente.")
+    st.write("Funcionamento do programa: Seguindo os comandos abaixo, você deverá inserir o valor do parâmetro de impacto (em unidades do raio gravitacional do corpo central). Por questões numéricas do código, este valor deve ser maior que $0$ afim de evitar singularides. O programa então retornará um gráfico correspondente à trajetória da partícula com esses parâmetro de impacto. Em (1) você pode explorar uma faixa definida de valores de  $d$ ; em (2), você pode inserir o valor desejado diretamente.")
     st.subheader("(1) Escolha o valor do parâmetro de impacto $d$, em unidades de $r_g$:")   
-    d = st.slider("Escolha entre 0 e 10",min_value=0.0, max_value=15.0, step = 0.1) 
+    d = st.slider("Escolha entre 0.001 e 10",min_value=0.001, max_value=15.0, step = 0.1) 
     result2 = st.button("(1) Gerar Órbita")
 
     if st.session_state.get('button') != True:
