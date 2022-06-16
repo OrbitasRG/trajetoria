@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-import hydralit_components as hc
+#import hydralit_components as hc
 import numpy as np
 import matplotlib.pyplot as plt
 import sympy as sp
@@ -10,17 +10,22 @@ import time
 from PIL import Image
 from matplotlib.patches import Circle
 import streamlit.components.v1 as components
-#lightbulb
-#sun
-selected = option_menu(options=["Introdução", "Corpos Massivos", "Raios de Luz"], icon=["card-text","box","brightness-high"], default_index=0, orientation='horizontal',
+
+
+st.set_page_config(
+     page_title="Órbitas Relativisticas",
+     page_icon=":comet:"
 )
+
+selected = option_menu(menu_title=None, options=["Introdução","Corpos Massivos", "Raios de Luz"],icons = ["card-text","box","brightness-high"], default_index=0, orientation='horizontal',
+)
+
+#selected = option_menu(options=["Introdução", "Corpos Massivos", "Raios de Luz"], icon=["card-text","box","brightness-high"], default_index=0, orientation='horizontal',
+#)
 
 
 #st.set_page_config(page_title="Órbitas Relativísticas", page_icon=":star:")
 
-#st.set_page_config(
- #    page_title="Órbitas Relativisticas",
-  #   page_icon=":comet:")
 
 #app = hy.HydraApp()
 
@@ -94,7 +99,7 @@ if selected == "Introdução":
 
 #@app.addapp(title='Corpos massivos', icon="🪨")
 #def app2():
-if selected == "Corpos Massivos":
+elif selected == "Corpos Massivos":
     st.title("Simulador para análise das órbitas relativísticas de corpos com massa")
     st.write("Funcionamento do programa: Seguindo os comandos abaixo, você deverá, primeiramente, inserir o valor do momento angular adimensional $L = Lc/(GMm)$. Em seguida, o programa exibirá o gráfico da energia potencial efetiva (adimensional). Você deverá então inserir o valor da energia da partícula teste, $E = E/(mc^2)$, que pode assumir qualquer valor maior que o mínimo de $U_{efetiva}^{(R)}$. O programa então retornará um gráfico correspondente à trajetória da partícula com esses parâmetros de energia e momento angular, para um corpo central com massa igual à do Sol.")
     st.subheader("Escolha o valor do momento angular adimensional $L>0$:")   
@@ -180,9 +185,7 @@ if selected == "Corpos Massivos":
             plt.show()
             st.pyplot(fig1)
 
-
-
-        
+       
         st.write("Agora, escolha o valor do parâmetro de energia  E. Ele deve ser maior que o mínimo da energia potencial efetiva; calculada no passo anteior")        
         E = st.number_input('Insira um valor de parâmetro de energia')
         st.write("Para uma órbita ligada ($U_{efetiva,min} ≤ E < 0$), escolha também o número de órbitas que deseja traçar:")
@@ -310,7 +313,7 @@ if selected == "Corpos Massivos":
 
 #@app.addapp(title='Raios de luz', icon="💡")
 #def app2():
-if selected == "Raios de Luz":
+elif selected == "Raios de Luz":
     st.title("Simulador para análise das órbitas relativísticas de raios de luz")
     st.write("Desta vez, a forma do potencial é fixa e está ilustrada abaixo. O máximo do potencial efetivo ocorre para $r = 1.5 r_g$.")
     imagepot = Image.open(r'C:/Users/isabe/.streamlit/potencialluz.png')
