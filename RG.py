@@ -335,7 +335,7 @@ elif selected == "Raios de Luz":
         from matplotlib.patches import Circle
      
         if d==0:
-               d=0.00001
+          d=0.00001
         else:
           d=d
 
@@ -473,10 +473,10 @@ elif selected == "Raios de Luz":
     d2 = st.number_input('Insira um valor de parâmetro de impacto')
     result3 = st.button("(2) Gerar Órbita")
 
-    if st.session_state.get('button') != True:
-        st.session_state['button'] = result3
+    if st.session_state.get('button2') != True:
+        st.session_state['button2'] = result3
 
-    if st.session_state['button'] == True:
+    if st.session_state['button2'] == True:
             import numpy as np
             import matplotlib.pyplot as plt
             import sympy as sp
@@ -616,7 +616,7 @@ elif selected == "Raios de Luz":
                 plt.show()
                 st.pyplot(fig3)
 
-                st.session_state['button'] = False
+                st.session_state['button2'] = False
 
                 st.checkbox('Limpar seleções')
 
