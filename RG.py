@@ -187,7 +187,7 @@ elif selected == "Corpos Massivos":
 
        
         st.write("Agora, escolha o valor do parâmetro de energia  E. Ele deve ser maior que o mínimo da energia potencial efetiva; calculada no passo anteior")        
-        E = st.number_input('Insira um valor de parâmetro de energia')
+        E = st.number_input('Insira um valor de parâmetro de energia', step=0.001, format="%.3f")
         st.write("Para uma órbita ligada ($U_{efetiva,min} ≤ E < 0$), escolha também o número de órbitas que deseja traçar:")
         st.subheader("Escolha o número de voltas completas na órbita:")   
         norbit = st.slider("Escolha entre 1 e 20",min_value=1, max_value=20, step = 1)
