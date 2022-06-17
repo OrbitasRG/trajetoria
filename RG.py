@@ -731,6 +731,10 @@ elif selected == "Raios de Luz":
                      ax.set_facecolor("black")
                      plt.show()
                      st.pyplot(fig3)
+                     
+                     st.session_state['button'] = False
+
+                     st.checkbox('Limpar seleções')
     
             else:
                  b = 2*d2
@@ -860,9 +864,9 @@ elif selected == "Raios de Luz":
                      plt.show()
                      st.pyplot(fig3)
 
-                st.session_state['button'] = False
+                    st.session_state['button'] = False
 
-                st.checkbox('Limpar seleções')
+                    st.checkbox('Limpar seleções')
 
 #Run the whole lot, we get navbar, state management and app isolation, all with this tiny amount of work.
 #app.run()
