@@ -611,7 +611,7 @@ elif selected == "Raios de Luz":
                 ax.spines['left'].set_color('black')
                 ax.xaxis.label.set_color('black')
                 ax.yaxis.label.set_color('black')
-                fig2.patch.set_facecolor('white')
+                fig3.patch.set_facecolor('white')
                 ax.set_facecolor("black")
                 plt.show()
                 st.pyplot(fig3)
