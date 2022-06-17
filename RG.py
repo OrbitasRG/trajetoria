@@ -186,11 +186,11 @@ elif selected == "Corpos Massivos":
             st.pyplot(fig1)
 
        
-        st.write("Agora, escolha o valor do parâmetro de energia  E. Ele deve ser maior que o mínimo da energia potencial efetiva; calculada no passo anteior")   
+         
         st.subheader("Insira o valor do parâmetro de energia:") 
-        E = st.number_input('Escolha de acordo com os permitidos', step=1e-5, format="%.5f")
-        st.write("Para uma órbita ligada ($U_{efetiva,min} ≤ E < 0$), escolha também o número de órbitas que deseja traçar:")
+        E = st.number_input('Escolha um valor maior que o mínimo da energia potencial efetiva; calculada no passo anteior', step=1e-5, format="%.5f")
         st.subheader("Insira o número de voltas completas na órbita:")   
+        st.write("Para uma órbita ligada ($U_{eff,min} ≤ E < 0$), escolha também o número de órbitas que deseja traçar:")
         norbit = st.slider("Escolha entre 1 e 20",min_value=1, max_value=20, step = 1)
         
         if st.button('Gerar Órbita'):
