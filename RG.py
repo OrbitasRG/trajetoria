@@ -189,6 +189,8 @@ elif selected == "Corpos Massivos":
             ax.set_facecolor("black")
             plt.show()
             st.pyplot(fig1)
+            
+            st.session_state['button'] = False
 
        
          
@@ -197,8 +199,12 @@ elif selected == "Corpos Massivos":
         st.subheader("Insira o número de voltas completas na órbita:")   
         st.write("Para uma órbita ligada ($U_{eff,min} ≤ E < 0$), escolha também o número de órbitas que deseja traçar.")
         norbit = st.slider("Escolha entre 1 e 20",min_value=1, max_value=20, step = 1)
-        
-        if st.button('Gerar Órbita'):
+        result11 = st.button("Gerar Órbita")
+
+        if st.session_state.get('button1') != True:
+             st.session_state['button1'] = result11
+
+        if st.session_state['button1'] == True:
             import numpy as np
             import matplotlib.pyplot as plt
             import sympy as sp
@@ -314,7 +320,7 @@ elif selected == "Corpos Massivos":
 
             st.session_state['button'] = False
 
-            st.checkbox('Limpar seleções')
+           
             
 
 #@app.addapp(title='Raios de luz', icon="💡")
