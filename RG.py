@@ -466,10 +466,10 @@ elif selected == "Raios de Luz":
             plt.show()
             st.pyplot(fig2)
 
-        st.subheader("(2) Escolha o valor do parâmetro de impacto $d$, em unidades de $r_g$:")   
-        d2 = st.number_input('Insira um valor de parâmetro de impacto') 
+    st.subheader("(2) Escolha o valor do parâmetro de impacto $d$, em unidades de $r_g$:")   
+    d2 = st.number_input('Insira um valor de parâmetro de impacto') 
             
-        if st.button('(2) Gerar Órbita'):
+    if st.button('(2) Gerar Órbita'):
 
             import numpy as np
             import matplotlib.pyplot as plt
