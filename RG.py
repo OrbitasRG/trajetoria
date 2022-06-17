@@ -101,7 +101,7 @@ if selected == "Introdução":
 #def app2():
 elif selected == "Corpos Massivos":
     st.title("Simulador para análise das órbitas relativísticas de corpos com massa")
-    st.write("Funcionamento do programa: Seguindo os comandos abaixo, você deverá, primeiramente, inserir o valor do momento angular adimensional $L=Lc/(GMm)$. Em seguida, o programa exibirá o gráfico da energia potencial efetiva (adimensional): $U_{eff}^{(R)}/(mc^2)$. Você deverá então inserir o valor da energia da partícula teste, $E = E/(mc^2)$, que pode assumir qualquer valor maior que o mínimo de $U_{eff}^{(R)}$. O programa então retornará um gráfico correspondente à trajetória da partícula com esses parâmetros de energia e momento angular, para um corpo central ultracompacto com massa igual à do Sol.")
+    st.write("Funcionamento do programa: Seguindo os comandos abaixo, você deverá, primeiramente, inserir o valor do momento angular adimensional st.latex(r'''\bar{L}''')$=Lc/(GMm)$. Em seguida, o programa exibirá o gráfico da energia potencial efetiva (adimensional): $U_{eff}^{(R)}/(mc^2)$. Você deverá então inserir o valor da energia da partícula teste, $E = E/(mc^2)$, que pode assumir qualquer valor maior que o mínimo de $U_{eff}^{(R)}$. O programa então retornará um gráfico correspondente à trajetória da partícula com esses parâmetros de energia e momento angular, para um corpo central ultracompacto com massa igual à do Sol.")
     st.subheader("Insira o valor do momento angular adimensional:")   
     momento = st.slider("Escolha entre 0 e 15",min_value=0.0, max_value=15.0, step = 0.1) 
     result1 = st.button("Gerar Potencial")
