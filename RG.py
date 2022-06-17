@@ -42,7 +42,7 @@ if selected == "Introdução":
     $$
     '''
     st.write(eq1)
-    st.write("onde $G = 6,67  \times  10^{-11} m^3 kg^{-1} s^{-2}$ é a constante da gravitação universal e $r$ é a distância ao corpo central.")
+    st.write("onde $G = 6,67  •  10^{-11} m^3 kg^{-1} s^{-2}$ é a constante da gravitação universal e $r$ é a distância ao corpo central.")
     st.write("Uma partícula de massa $m$ sujeita a esse campo gravitacional descreve uma trajetória que é restrita a um plano e pode ser descrita pelas fuções $r(t)$ e $θ(t)$, que satisfazem")
     eq2 = r'''
     $$
@@ -101,7 +101,7 @@ if selected == "Introdução":
 #def app2():
 elif selected == "Corpos Massivos":
     st.title("Simulador para análise das órbitas relativísticas de corpos com massa")
-    st.write("Funcionamento do programa: Seguindo os comandos abaixo, você deverá, primeiramente, inserir o valor do momento angular adimensional $L = Lc/(GMm)$. Em seguida, o programa exibirá o gráfico da energia potencial efetiva (adimensional). Você deverá então inserir o valor da energia da partícula teste, $E = E/(mc^2)$, que pode assumir qualquer valor maior que o mínimo de $U_{efetiva}^{(R)}$. O programa então retornará um gráfico correspondente à trajetória da partícula com esses parâmetros de energia e momento angular, para um corpo central com massa igual à do Sol.")
+    st.write("Funcionamento do programa: Seguindo os comandos abaixo, você deverá, primeiramente, inserir o valor do momento angular adimensional $\bar{L} = Lc/(GMm)$. Em seguida, o programa exibirá o gráfico da energia potencial efetiva (adimensional): $\bar{U}_eff^(R)/(mc^2)$. Você deverá então inserir o valor da energia da partícula teste, $\bar{E} = E/(mc^2)$, que pode assumir qualquer valor maior que o mínimo de $\bar{U}_efetiva}^{(R)}$. O programa então retornará um gráfico correspondente à trajetória da partícula com esses parâmetros de energia e momento angular, para um corpo central com massa igual à do Sol.")
     st.subheader("Escolha o valor do momento angular adimensional $L>0$:")   
     momento = st.slider("Escolha entre 0 e 15",min_value=0.0, max_value=15.0, step = 0.1) 
     result1 = st.button("Gerar Potencial")
