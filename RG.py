@@ -318,7 +318,7 @@ elif selected == "Corpos Massivos":
             plt.show()
             st.pyplot(fig2)
 
-            st.session_state['button'] = False
+            st.session_state['button1'] = False
 
            
             
