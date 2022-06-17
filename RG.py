@@ -102,7 +102,7 @@ if selected == "Introdução":
 elif selected == "Corpos Massivos":
     st.title("Simulador para análise das órbitas relativísticas de corpos com massa")
     st.write("Funcionamento do programa: Seguindo os comandos abaixo, você deverá, primeiramente, inserir o valor do momento angular adimensional $L=Lc/(GMm)$. Em seguida, o programa exibirá o gráfico da energia potencial efetiva (adimensional): $U_{eff}^{(R)}/(mc^2)$. Você deverá então inserir o valor da energia da partícula teste, $E = E/(mc^2)$, que pode assumir qualquer valor maior que o mínimo de $U_{eff}^{(R)}$. O programa então retornará um gráfico correspondente à trajetória da partícula com esses parâmetros de energia e momento angular, para um corpo central ultracompacto com massa igual à do Sol.")
-    st.subheader("Escolha o valor do momento angular adimensional $L>0$:")   
+    st.subheader("Insira o valor do momento angular adimensional $L>0$:")   
     momento = st.slider("Escolha entre 0 e 15",min_value=0.0, max_value=15.0, step = 0.1) 
     result1 = st.button("Gerar Potencial")
 
@@ -186,10 +186,11 @@ elif selected == "Corpos Massivos":
             st.pyplot(fig1)
 
        
-        st.write("Agora, escolha o valor do parâmetro de energia  E. Ele deve ser maior que o mínimo da energia potencial efetiva; calculada no passo anteior")        
-        E = st.number_input('Insira um valor de parâmetro de energia', step=1e-5, format="%.5f")
+        st.write("Agora, escolha o valor do parâmetro de energia  E. Ele deve ser maior que o mínimo da energia potencial efetiva; calculada no passo anteior")   
+        st.subheader("Insira o valor do parâmetro de energia:") 
+        E = st.number_input('Escolha de acordo com os permitidos', step=1e-5, format="%.5f")
         st.write("Para uma órbita ligada ($U_{efetiva,min} ≤ E < 0$), escolha também o número de órbitas que deseja traçar:")
-        st.subheader("Escolha o número de voltas completas na órbita:")   
+        st.subheader("Insira o número de voltas completas na órbita:")   
         norbit = st.slider("Escolha entre 1 e 20",min_value=1, max_value=20, step = 1)
         
         if st.button('Gerar Órbita'):
