@@ -627,7 +627,7 @@ elif selected == "Raios de Luz":
                  plt.show()
                  st.pyplot(fig3)
 
-                st.session_state['button2'] = False
+                 st.session_state['button2'] = False
 
 #Run the whole lot, we get navbar, state management and app isolation, all with this tiny amount of work.
 #app.run()
