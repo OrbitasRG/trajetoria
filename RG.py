@@ -194,17 +194,17 @@ elif selected == "Corpos Massivos":
 
        
          
-        st.subheader("Insira o valor do parâmetro de energia:") 
-        E = st.number_input('Escolha um valor maior que o mínimo da energia potencial efetiva; calculada no passo anteior', step=1e-5, format="%.5f")
-        st.subheader("Insira o número de voltas completas na órbita:")   
-        st.write("Para uma órbita ligada ($U_{eff,min} ≤ E < 0$), escolha também o número de órbitas que deseja traçar.")
-        norbit = st.slider("Escolha entre 1 e 20",min_value=1, max_value=20, step = 1)
-        result11 = st.button("Gerar Órbita")
+    st.subheader("Insira o valor do parâmetro de energia:") 
+    E = st.number_input('Escolha um valor maior que o mínimo da energia potencial efetiva; calculada no passo anteior', step=1e-5, format="%.5f")
+    st.subheader("Insira o número de voltas completas na órbita:")   
+    st.write("Para uma órbita ligada ($U_{eff,min} ≤ E < 0$), escolha também o número de órbitas que deseja traçar.")
+    norbit = st.slider("Escolha entre 1 e 20",min_value=1, max_value=20, step = 1)
+    result11 = st.button("Gerar Órbita")
 
-        if st.session_state.get('button1') != True:
+    if st.session_state.get('button1') != True:
              st.session_state['button1'] = result11
 
-        if st.session_state['button1'] == True:
+    if st.session_state['button1'] == True:
             import numpy as np
             import matplotlib.pyplot as plt
             import sympy as sp
