@@ -187,7 +187,7 @@ elif selected == "Corpos Massivos":
 
        
         st.write("Agora, escolha o valor do parâmetro de energia  E. Ele deve ser maior que o mínimo da energia potencial efetiva; calculada no passo anteior")        
-        E = st.number_input('Insira um valor de parâmetro de energia', step=0.0000001, format="%.7f")
+        E = st.number_input('Insira um valor de parâmetro de energia', step=0.0000000001, format="%.10f")
         st.write("Para uma órbita ligada ($U_{efetiva,min} ≤ E < 0$), escolha também o número de órbitas que deseja traçar:")
         st.subheader("Escolha o número de voltas completas na órbita:")   
         norbit = st.slider("Escolha entre 1 e 20",min_value=1, max_value=20, step = 1)
@@ -245,7 +245,7 @@ elif selected == "Corpos Massivos":
 
             delphi, erro = quad(theta, u1, u2)
 
-            n = 1000
+            n = 10000
             uc = np.arange(u1, u2, (u2 - u1)/n)
             ud = np.arange(u2, u1, (u1 - u2)/n)
 
