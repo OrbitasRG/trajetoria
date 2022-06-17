@@ -332,7 +332,7 @@ elif selected == "Raios de Luz":
     st.image(imagepot)
     st.write("Funcionamento do programa: Seguindo os comandos abaixo, você deverá inserir o valor do parâmetro de impacto (em unidades do raio gravitacional do corpo central). Você também pode escolher $d≈2.5981$, o valor do parâmetro de impacto crítico ($d=(V_{max})^{-1/2}$). O programa então retornará um gráfico correspondente à trajetória da partícula com esse parâmetro de impacto. Em (1) você pode explorar uma faixa definida de valores de  $d$ ; em (2), você pode inserir o valor desejado diretamente.")
     st.subheader("(1) Escolha o valor do parâmetro de impacto $d$, em unidades de $r_g$:")   
-    d = st.slider("Escolha entre 0 e 15",min_value=0.0, max_value=20.0, step = 0.1) 
+    d = st.slider("Escolha entre 0 e 20",min_value=0.0, max_value=20.0, step = 0.1) 
     result2 = st.button("(1) Gerar Órbita")
 
     if st.session_state.get('button') != True:
