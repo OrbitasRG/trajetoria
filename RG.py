@@ -477,271 +477,142 @@ elif selected == "Raios de Luz":
             from scipy.integrate import quad
             import math
             from matplotlib.patches import Circle
-          
+            
             if d2==0:
-                 d2=0.00001
-                 b = 2*d2
-
-                 rst = 30
-                 norbit = 10
-
-                 r = np.arange(0.1, 30, 0.1)
-                 u = 1 / r
-                 k = 1/(b**2)
-
-                 def w(u):
-                     w = u**2 - 2*(u**3)
-                     return w
-
-                 umax = 1/3
-                 wmax = 1/27
-                 ust = 1/rst
-
-                 coef = [-2, 1 , 0, -k]
-                 roots = np.roots(coef)
-                 tp2 = roots[1]
-                 tp3 = roots[0]
-
-                 eps = 0.000000001
-
-                 if k == wmax:
-                     phi = np.arange(0, 2 * math.pi, math.pi / 500)
-                     rmax = [1 / umax] * len(phi)
-                     xymax = [[0] * (len(phi)), [0] * (len(phi))]
-                     xymin = [[0] * (len(phi)), [0] * (len(phi))]
-                     for i in range(len(phi)):
-                         xymax[0][i] = rmax[i] * math.cos(phi[i]) /2 #Divisão por 2 para colocar em unidades de rg, não de M.
-                         xymax[1][i] = rmax[i] * math.sin(phi[i]) /2
-                     plt.figure()
-                     plt.subplot(1, 1, 1)
-                     plt.xlabel("x / rg")
-                     plt.ylabel("y / rg")
-                     circle = Circle((0,0), 2*1.477, color = 'black')
-                     plt.gca().add_patch(circle)
-                     plt.gca().set_aspect('equal')
-                     plt.plot(xymax[0], xymax[1], 'k--', color='black')
-                     plt.axis([1 / umax + 1, -1 / umax - 1, 1 / umax + 1, -1 / umax - 1])
-                 else:
-                     if k < wmax and ust < umax:
-                         uint = ust
-                         uext = tp2*(1 - eps)
-                         norbit = 1
-                     elif k > wmax:
-                         uint = ust
-                         uext = 0.5 * (1 - eps)
-                         norbit=0.5
-                     elif k < wmax and ust > umax:
-                         uint = 0.5
-                         uext = tp3 * (1 + eps)
-                         norbit =  0.5
-                     else:
-                         print("Ha uma incoerencia entre os parametros fornecidos")
-
-                     v = sp.Symbol('v')
-
-                     def theta(v):
-                         theta = (k-w(v))**(-1/2)
-                         return theta
-
-                     delphi, erro = quad(theta, uint, uext)
-
-                     n = 1500
-                     uc = np.arange(uint, uext, (uext - uint) / n)
-                     ud = np.arange(uext, uint, (uint - uext) / n)
-
-                     phi1 = []
-                     for i in range(len(uc)):
-                         a = quad(theta, uint, uc[i])
-                         phi1.append(abs(a[0]))
-
-                     phi2 = []
-                     for j in range(len(ud)):
-                         b = quad(theta, uext, ud[j])
-                         phi2.append(abs(b[0]))
-
-                     if norbit==0.5:
-                         utotal = uc
-                     else:
-                         utotal = utotal = np.concatenate([uc, ud]*(norbit))
-
-                     accphi = [0]*(len(utotal))
-
-                     if norbit == 0.5:
-                         accphi = phi1
-                         x = [0] * (len(uc))
-                         y = [0] * (len(uc))
-                         for i in range(len(uc)):
-                             x[i] = (math.cos(accphi[i])) / utotal[i] /2 #Divisão por 2 para colocar em unidades de rg, não de M.
-                             y[i] = (math.sin(accphi[i])) / utotal[i] /2
-                     else:
-                         for i in range(norbit):
-                             for j in range(n):
-                                 accphi[j + (2 * i * n)] = 2 * i * delphi + phi1[j]
-                                 accphi[j + ((2 * i + 1) * n)] = ((2 * i) + 1) * delphi + phi2[j]
-                         x = [0] * (2 * norbit * n)
-                         y = [0] * (2 * norbit * n)
-                         for i in range(2 * norbit * n):
-                             x[i] = (math.cos(accphi[i])) / utotal[i] /2 
-                             y[i] = (math.sin(accphi[i])) / utotal[i] /2 #Divisão por 2 para colocar em unidades de rg, não de M.
-
-                     fig3=plt.figure()
-                     plt.subplot(1, 1, 1)
-                     plt.plot(x, y, 'k--', color='gold')
-                     plt.xlabel("x [rg]")
-                     plt.ylabel("y [rg]")
-                     circle = Circle((0,0), 1, color = 'dimgrey')
-                     plt.gca().add_patch(circle)
-                     plt.gca().set_aspect('equal')
-                     plt.axis([(-1 / uint + 10)/2 , (1 / uint -10)/2 , (-1 / uint +10)/2 , (1 / uint -10)/2 ])
-                     ax = plt.gca()
-                     ax.spines['bottom'].set_color('black')
-                     ax.tick_params(axis='x', colors='black')
-                     ax.tick_params(axis='y', colors='black')
-                     ax.spines['top'].set_color('black') 
-                     ax.spines['right'].set_color('black')
-                     ax.spines['left'].set_color('black')
-                     ax.xaxis.label.set_color('black')
-                     ax.yaxis.label.set_color('black')
-                     fig3.patch.set_facecolor('white')
-                     ax.set_facecolor("black")
-                     plt.show()
-                     st.pyplot(fig3)
-                     
-                     st.session_state['button'] = False
-
-                     st.checkbox('Limpar seleções')
-    
+               d2=0.00001
             else:
-                 b = 2*d2
+               d2=d2
 
-                 rst = 30
-                 norbit = 10
+            b = 2*d2
 
-                 r = np.arange(0.1, 30, 0.1)
-                 u = 1 / r
-                 k = 1/(b**2)
+            rst = 30
+            norbit = 10
 
-                 def w(u):
-                     w = u**2 - 2*(u**3)
-                     return w
+            r = np.arange(0.1, 30, 0.1)
+            u = 1 / r
+            k = 1/(b**2)
 
-                 umax = 1/3
-                 wmax = 1/27
-                 ust = 1/rst
+            def w(u):
+                w = u**2 - 2*(u**3)
+                return w
 
-                 coef = [-2, 1 , 0, -k]
-                 roots = np.roots(coef)
-                 tp2 = roots[1]
-                 tp3 = roots[0]
+            umax = 1/3
+            wmax = 1/27
+            ust = 1/rst
 
-                 eps = 0.000000001
+            coef = [-2, 1 , 0, -k]
+            roots = np.roots(coef)
+            tp2 = roots[1]
+            tp3 = roots[0]
 
-                 if k == wmax:
-                     phi = np.arange(0, 2 * math.pi, math.pi / 500)
-                     rmax = [1 / umax] * len(phi)
-                     xymax = [[0] * (len(phi)), [0] * (len(phi))]
-                     xymin = [[0] * (len(phi)), [0] * (len(phi))]
-                     for i in range(len(phi)):
-                         xymax[0][i] = rmax[i] * math.cos(phi[i]) /2 #Divisão por 2 para colocar em unidades de rg, não de M.
-                         xymax[1][i] = rmax[i] * math.sin(phi[i]) /2
-                     plt.figure()
-                     plt.subplot(1, 1, 1)
-                     plt.xlabel("x / rg")
-                     plt.ylabel("y / rg")
-                     circle = Circle((0,0), 2*1.477, color = 'black')
-                     plt.gca().add_patch(circle)
-                     plt.gca().set_aspect('equal')
-                     plt.plot(xymax[0], xymax[1], 'k--', color='black')
-                     plt.axis([1 / umax + 1, -1 / umax - 1, 1 / umax + 1, -1 / umax - 1])
-                 else:
-                     if k < wmax and ust < umax:
-                         uint = ust
-                         uext = tp2*(1 - eps)
-                         norbit = 1
-                     elif k > wmax:
-                         uint = ust
-                         uext = 0.5 * (1 - eps)
-                         norbit=0.5
-                     elif k < wmax and ust > umax:
-                         uint = 0.5
-                         uext = tp3 * (1 + eps)
-                         norbit =  0.5
-                     else:
-                         print("Ha uma incoerencia entre os parametros fornecidos")
+            eps = 0.000000001
 
-                     v = sp.Symbol('v')
+            if k == wmax:
+                phi = np.arange(0, 2 * math.pi, math.pi / 500)
+                rmax = [1 / umax] * len(phi)
+                xymax = [[0] * (len(phi)), [0] * (len(phi))]
+                xymin = [[0] * (len(phi)), [0] * (len(phi))]
+                for i in range(len(phi)):
+                    xymax[0][i] = rmax[i] * math.cos(phi[i]) /2 #Divisão por 2 para colocar em unidades de rg, não de M.
+                    xymax[1][i] = rmax[i] * math.sin(phi[i]) /2
+                plt.figure()
+                plt.subplot(1, 1, 1)
+                plt.xlabel("x / rg")
+                plt.ylabel("y / rg")
+                circle = Circle((0,0), 2*1.477, color = 'black')
+                plt.gca().add_patch(circle)
+                plt.gca().set_aspect('equal')
+                plt.plot(xymax[0], xymax[1], 'k--', color='black')
+                plt.axis([1 / umax + 1, -1 / umax - 1, 1 / umax + 1, -1 / umax - 1])
+            else:
+                if k < wmax and ust < umax:
+                    uint = ust
+                    uext = tp2*(1 - eps)
+                    norbit = 1
+                elif k > wmax:
+                    uint = ust
+                    uext = 0.5 * (1 - eps)
+                    norbit=0.5
+                elif k < wmax and ust > umax:
+                    uint = 0.5
+                    uext = tp3 * (1 + eps)
+                    norbit =  0.5
+                else:
+                    print("Ha uma incoerencia entre os parametros fornecidos")
 
-                     def theta(v):
-                         theta = (k-w(v))**(-1/2)
-                         return theta
+                v = sp.Symbol('v')
 
-                     delphi, erro = quad(theta, uint, uext)
+                def theta(v):
+                    theta = (k-w(v))**(-1/2)
+                    return theta
 
-                     n = 1500
-                     uc = np.arange(uint, uext, (uext - uint) / n)
-                     ud = np.arange(uext, uint, (uint - uext) / n)
+                delphi, erro = quad(theta, uint, uext)
 
-                     phi1 = []
-                     for i in range(len(uc)):
-                         a = quad(theta, uint, uc[i])
-                         phi1.append(abs(a[0]))
+                n = 1500
+                uc = np.arange(uint, uext, (uext - uint) / n)
+                ud = np.arange(uext, uint, (uint - uext) / n)
 
-                     phi2 = []
-                     for j in range(len(ud)):
-                         b = quad(theta, uext, ud[j])
-                         phi2.append(abs(b[0]))
+                phi1 = []
+                for i in range(len(uc)):
+                    a = quad(theta, uint, uc[i])
+                    phi1.append(abs(a[0]))
 
-                     if norbit==0.5:
-                         utotal = uc
-                     else:
-                         utotal = utotal = np.concatenate([uc, ud]*(norbit))
+                phi2 = []
+                for j in range(len(ud)):
+                    b = quad(theta, uext, ud[j])
+                    phi2.append(abs(b[0]))
 
-                     accphi = [0]*(len(utotal))
+                if norbit==0.5:
+                    utotal = uc
+                else:
+                    utotal = utotal = np.concatenate([uc, ud]*(norbit))
 
-                     if norbit == 0.5:
-                         accphi = phi1
-                         x = [0] * (len(uc))
-                         y = [0] * (len(uc))
-                         for i in range(len(uc)):
-                             x[i] = (math.cos(accphi[i])) / utotal[i] /2 #Divisão por 2 para colocar em unidades de rg, não de M.
-                             y[i] = (math.sin(accphi[i])) / utotal[i] /2
-                     else:
-                         for i in range(norbit):
-                             for j in range(n):
-                                 accphi[j + (2 * i * n)] = 2 * i * delphi + phi1[j]
-                                 accphi[j + ((2 * i + 1) * n)] = ((2 * i) + 1) * delphi + phi2[j]
-                         x = [0] * (2 * norbit * n)
-                         y = [0] * (2 * norbit * n)
-                         for i in range(2 * norbit * n):
-                             x[i] = (math.cos(accphi[i])) / utotal[i] /2 
-                             y[i] = (math.sin(accphi[i])) / utotal[i] /2 #Divisão por 2 para colocar em unidades de rg, não de M.
+                accphi = [0]*(len(utotal))
 
-                     fig3=plt.figure()
-                     plt.subplot(1, 1, 1)
-                     plt.plot(x, y, 'k--', color='gold')
-                     plt.xlabel("x [rg]")
-                     plt.ylabel("y [rg]")
-                     circle = Circle((0,0), 1, color = 'dimgrey')
-                     plt.gca().add_patch(circle)
-                     plt.gca().set_aspect('equal')
-                     plt.axis([(-1 / uint + 10)/2 , (1 / uint -10)/2 , (-1 / uint +10)/2 , (1 / uint -10)/2 ])
-                     ax = plt.gca()
-                     ax.spines['bottom'].set_color('black')
-                     ax.tick_params(axis='x', colors='black')
-                     ax.tick_params(axis='y', colors='black')
-                     ax.spines['top'].set_color('black') 
-                     ax.spines['right'].set_color('black')
-                     ax.spines['left'].set_color('black')
-                     ax.xaxis.label.set_color('black')
-                     ax.yaxis.label.set_color('black')
-                     fig3.patch.set_facecolor('white')
-                     ax.set_facecolor("black")
-                     plt.show()
-                     st.pyplot(fig3)
+                if norbit == 0.5:
+                    accphi = phi1
+                    x = [0] * (len(uc))
+                    y = [0] * (len(uc))
+                    for i in range(len(uc)):
+                        x[i] = (math.cos(accphi[i])) / utotal[i] /2 #Divisão por 2 para colocar em unidades de rg, não de M.
+                        y[i] = (math.sin(accphi[i])) / utotal[i] /2
+                else:
+                    for i in range(norbit):
+                        for j in range(n):
+                            accphi[j + (2 * i * n)] = 2 * i * delphi + phi1[j]
+                            accphi[j + ((2 * i + 1) * n)] = ((2 * i) + 1) * delphi + phi2[j]
+                    x = [0] * (2 * norbit * n)
+                    y = [0] * (2 * norbit * n)
+                    for i in range(2 * norbit * n):
+                        x[i] = (math.cos(accphi[i])) / utotal[i] /2 
+                        y[i] = (math.sin(accphi[i])) / utotal[i] /2 #Divisão por 2 para colocar em unidades de rg, não de M.
 
-                    st.session_state['button'] = False
+                fig3=plt.figure()
+                plt.subplot(1, 1, 1)
+                plt.plot(x, y, 'k--', color='gold')
+                plt.xlabel("x [rg]")
+                plt.ylabel("y [rg]")
+                circle = Circle((0,0), 1, color = 'dimgrey')
+                plt.gca().add_patch(circle)
+                plt.gca().set_aspect('equal')
+                plt.axis([(-1 / uint + 10)/2 , (1 / uint -10)/2 , (-1 / uint +10)/2 , (1 / uint -10)/2 ])
+                ax = plt.gca()
+                ax.spines['bottom'].set_color('black')
+                ax.tick_params(axis='x', colors='black')
+                ax.tick_params(axis='y', colors='black')
+                ax.spines['top'].set_color('black') 
+                ax.spines['right'].set_color('black')
+                ax.spines['left'].set_color('black')
+                ax.xaxis.label.set_color('black')
+                ax.yaxis.label.set_color('black')
+                fig2.patch.set_facecolor('white')
+                ax.set_facecolor("black")
+                plt.show()
+                st.pyplot(fig3)
 
-                    st.checkbox('Limpar seleções')
+                st.session_state['button'] = False
+
+                st.checkbox('Limpar seleções')
 
 #Run the whole lot, we get navbar, state management and app isolation, all with this tiny amount of work.
 #app.run()
