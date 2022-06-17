@@ -33,7 +33,7 @@ selected = option_menu(menu_title=None, options=["Introdução","Corpos Massivos
 #@app.addapp(title='Introdução', icon="📜")
 #def my_home():
 if selected == "Introdução":
-    st.title("órbitas de corpos massivos")
+    st.title("Órbitas de corpos massivos")
     st.subheader('Caso newtoniano')
     st.write("De acordo com a lei da gravitação universal de Newton, o campo gravitacional externo a um corpo esférico de massa  $M$  (situado na origem do sistema de coordenadas) é")
     eq1 = r'''
@@ -73,7 +73,7 @@ if selected == "Introdução":
     '''
     st.write(eq5) 
 
-    st.title("órbitas de raios de luz")
+    st.title("Órbitas de raios de luz")
     st.write("Um raio de luz, no espaço-tempo de Schwarzschild, descreve uma trajetória que também pode ser escrita na forma de um problema unidimensional efetivo. Temos:")
     eq6 = r'''
     $$
@@ -465,12 +465,18 @@ elif selected == "Raios de Luz":
             ax.set_facecolor("black")
             plt.show()
             st.pyplot(fig2)
-
-    st.subheader("(2) Escolha o valor do parâmetro de impacto $d$, em unidades de $r_g$:")   
-    d2 = st.number_input('Insira um valor de parâmetro de impacto') 
             
-    if st.button('(2) Gerar Órbita'):
+            st.session_state['button'] = False
+            st.checkbox('Limpar seleções')   
+    
+    st.subheader("(2) Escolha o valor do parâmetro de impacto $d$, em unidades de $r_g$:")   
+    d2 = st.number_input('Insira um valor de parâmetro de impacto')
+    result3 = st.button("(2) Gerar Órbita")
 
+    if st.session_state.get('button') != True:
+        st.session_state['button'] = result3
+
+    if st.session_state['button'] == True:
             import numpy as np
             import matplotlib.pyplot as plt
             import sympy as sp
