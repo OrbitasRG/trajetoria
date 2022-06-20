@@ -38,7 +38,7 @@ if selected == "Introdução":
     st.write("De acordo com a lei da gravitação universal de Newton, o campo gravitacional externo a um corpo esférico de massa  $M$  (situado na origem do sistema de coordenadas) é")
     eq1 = r'''
     $$
-    \vec{g} = - \frac{GM}{r^2} \hat{r} \qquad \qquad
+    \vec{g} = - \frac{GM}{r^2} \hat{r} \qquad \qquad \bar{U}
     $$
     '''
     st.write(eq1)
