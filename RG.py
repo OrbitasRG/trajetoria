@@ -258,12 +258,12 @@ elif selected == "Corpos Massivos":
             delphi, erro = quad(theta, u1, u2)
 
             n = 1000
-            ui=np.arange(u1,u2/2,(u2/2 - u1)/n)
-            uf=np.arange(u2/2, u2, (u2 - u2/2)/(10*n))
-            uc=ui.extend(uf)
-            ud=reverse(uc)
-            #uc = np.arange(u1, u2, (u2 - u1)/n)
-            #ud = np.arange(u2, u1, (u1 - u2)/n)
+            #ui=np.arange(u1,u2/2,(u2/2 - u1)/n)
+            #uf=np.arange(u2/2, u2, (u2 - u2/2)/(10*n))
+            #uc=ui.extend(uf)
+            #ud=reverse(uc)
+            uc = np.arange(u1, u2, (u2 - u1)/n)
+            ud = np.arange(u2, u1, (u1 - u2)/n)
 
             phi1 = []
             for i in range(len(uc)):
