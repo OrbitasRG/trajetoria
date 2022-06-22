@@ -257,7 +257,7 @@ elif selected == "Corpos Massivos":
 
             delphi, erro = quad(theta, u1, u2)
 
-            n = 1000
+            n = 2000
             uc = np.arange(u1, u2, (u2 - u1)/n)
             ud = np.arange(u2, u1, (u1 - u2)/n)
 
