@@ -632,6 +632,14 @@ elif selected == "Raios de Luz":
                  st.pyplot(fig3)
 
                  st.session_state['button2'] = False
+               
+[theme]
+
+primaryColor="#6eb52f"
+backgroundColor="#f0f0f5"
+secondaryBackgroundColor="#e0e0ef"
+textColor="#262730"
+font="sans serif"               
 
 #Run the whole lot, we get navbar, state management and app isolation, all with this tiny amount of work.
 #app.run()
