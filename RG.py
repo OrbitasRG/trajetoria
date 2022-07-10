@@ -630,15 +630,15 @@ elif selected == "Raios de Luz":
                  plt.show()
                  st.pyplot(fig3)
 
-                 st.session_state['button2'] = False
-               
+                 st.session_state['button2'] = False             
+
+#Run the whole lot, we get navbar, state management and app isolation, all with this tiny amount of work.
+#app.run()
+
 [theme]
 
 primaryColor="#6eb52f"
 backgroundColor="#f0f0f5"
 secondaryBackgroundColor="#e0e0ef"
 textColor="#262730"
-font="sans serif"               
-
-#Run the whole lot, we get navbar, state management and app isolation, all with this tiny amount of work.
-#app.run()
+font="sans serif" 
