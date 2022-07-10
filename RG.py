@@ -32,7 +32,7 @@ selected = option_menu(menu_title=None, options=["Introdução","Corpos Massivos
 
 #@app.addapp(title='Introdução', icon="📜")
 #def my_home():
-if selected == "Introdução":
+if selected == "Introducão":
     st.title("Órbitas de corpos massivos")
     st.subheader('Caso newtoniano')
     st.write("De acordo com a lei da gravitação universal de Newton, o campo gravitacional externo a um corpo esférico de massa  $M$  (situado na origem do sistema de coordenadas) é")
