@@ -35,7 +35,7 @@ selected = option_menu(menu_title=None, options=["Introdução","Corpos Massivos
 if selected == "Introdução":
     st.title("Órbitas de corpos massivos")
     st.subheader('Caso newtoniano')
-    st.write("De acordooo com a lei da gravitação universal de Newton, o campo gravitacional externo a um corpo esférico de massa  $M$  (situado na origem do sistema de coordenadas) é")
+    st.write("De acordo com a lei da gravitação universal de Newton, o campo gravitacional externo a um corpo esférico de massa  $M$  (situado na origem do sistema de coordenadas) é")
     eq1 = r'''
     $$
     \vec{g} = - \frac{GM}{r^2} \hat{r} \qquad \qquad 
