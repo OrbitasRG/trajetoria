@@ -14,15 +14,7 @@ import streamlit.components.v1 as components
 st.set_page_config(
      page_title="Órbitas Relativisticas",
      page_icon=":comet:"
-)
-
-[theme]
-
-primaryColor="#6eb52f"
-backgroundColor="#f0f0f5"
-secondaryBackgroundColor="#e0e0ef"
-textColor="#262730"
-font="sans serif"  
+) 
 
 selected = option_menu(menu_title=None, options=["Introdução","Corpos Massivos", "Raios de Luz"],icons = ["card-text","box","brightness-high"], default_index=0, orientation='horizontal',
 )
