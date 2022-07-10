@@ -17,7 +17,7 @@ st.set_page_config(
      page_icon=":comet:"
 )
 
-selected = option_menu(menu_title=None, options=["Introducão","Corpos Massivos", "Raios de Luz"],icons = ["card-text","box","brightness-high"], default_index=0, orientation='horizontal',
+selected = option_menu(menu_title=None, options=["Introdução","Corpos Massivos", "Raios de Luz"],icons = ["card-text","box","brightness-high"], default_index=0, orientation='horizontal',
 )
 
 #selected = option_menu(options=["Introdução", "Corpos Massivos", "Raios de Luz"], icon=["card-text","box","brightness-high"], default_index=0, orientation='horizontal',
@@ -32,10 +32,10 @@ selected = option_menu(menu_title=None, options=["Introducão","Corpos Massivos"
 
 #@app.addapp(title='Introdução', icon="📜")
 #def my_home():
-if selected == "Introducão":
+if selected == "Introdução":
     st.title("Órbitas de corpos massivos")
     st.subheader('Caso newtoniano')
-    st.write("De acordo com a lei da gravitação universal de Newton, o campo gravitacional externo a um corpo esférico de massa  $M$  (situado na origem do sistema de coordenadas) é")
+    st.write("De acordooo com a lei da gravitação universal de Newton, o campo gravitacional externo a um corpo esférico de massa  $M$  (situado na origem do sistema de coordenadas) é")
     eq1 = r'''
     $$
     \vec{g} = - \frac{GM}{r^2} \hat{r} \qquad \qquad 
