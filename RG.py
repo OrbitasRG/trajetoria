@@ -17,7 +17,7 @@ st.set_page_config(
      page_icon=":comet:"
 )
 
-selected = option_menu(menu_title=None, options=["Introdução","Corpos Massivos", "Raios de Luz"],icons = ["card-text","box","brightness-high"], default_index=0, orientation='horizontal',
+selected = option_menu(menu_title=None, options=["Introducão","Corpos Massivos", "Raios de Luz"],icons = ["card-text","box","brightness-high"], default_index=0, orientation='horizontal',
 )
 
 #selected = option_menu(options=["Introdução", "Corpos Massivos", "Raios de Luz"], icon=["card-text","box","brightness-high"], default_index=0, orientation='horizontal',
