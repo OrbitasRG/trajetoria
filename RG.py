@@ -634,11 +634,3 @@ elif selected == "Raios de Luz":
 
 #Run the whole lot, we get navbar, state management and app isolation, all with this tiny amount of work.
 #app.run()
-
-[theme]
-
-primaryColor="#6eb52f"
-backgroundColor="#f0f0f5"
-secondaryBackgroundColor="#e0e0ef"
-textColor="#262730"
-font="sans serif" 
