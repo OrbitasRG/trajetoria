@@ -11,6 +11,13 @@ from PIL import Image
 from matplotlib.patches import Circle
 import streamlit.components.v1 as components
 
+[theme]
+
+primaryColor="#6eb52f"
+backgroundColor="#f0f0f5"
+secondaryBackgroundColor="#e0e0ef"
+textColor="#262730"
+font="sans serif"  
 
 st.set_page_config(
      page_title="Órbitas Relativisticas",
