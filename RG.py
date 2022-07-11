@@ -301,7 +301,7 @@ elif selected == "Corpos Massivos":
                            st.session_state['button1'] = False                                                                             
             
 
-            else:
+        else:
                  vlim = 0
                  rmax = 80
                  st.write("Para esse valor do momento angular, a energia potencial efetiva não possui um mínimo ou máximo local.")
