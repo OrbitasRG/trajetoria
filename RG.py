@@ -165,7 +165,8 @@ elif selected == "Corpos Massivos":
             st.subheader("Insira o valor do parâmetro de energia:") 
             E = st.number_input('Escolha um valor maior que o mínimo da energia potencial efetiva; calculada no passo anteior', step=1e-5, format="%.5f")
             if E<vmin:
-               st.write("ATENÇÃO: Você escolheu um valor de parâmetro de energia menor que o valor mínimo permitido. Escolha novamente um valor dentro do limite especificado antes de continuar")   
+               st.write("ATENÇÃO: Você escolheu um valor de parâmetro de energia menor que o valor mínimo permitido. Escolha novamente um valor dentro do limite especificado antes de continuar.")   
+               break
             else:
               st.subheader("Insira o número de voltas completas na órbita:")   
               st.write("Para uma órbita ligada ($U_{eff,min} ≤ E < 0$), escolha também o número de órbitas que deseja traçar.")
