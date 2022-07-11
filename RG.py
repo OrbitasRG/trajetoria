@@ -328,7 +328,140 @@ elif selected == "Corpos Massivos":
             plt.show()
             st.pyplot(fig1)
             
-            st.session_state['button'] = False
+            st.subheader("Insira o valor do parâmetro de energia:") 
+            E = st.number_input('Escolha um valor maior que o mínimo da energia potencial efetiva; calculada no passo anteior', step=1e-5, format="%.5f")
+            result111 = st.button("Continuar")
+            
+            if st.session_state.get('button11') != True:
+                       st.session_state['button11'] = result111
+                       
+            if st.session_state['button11'] == True:
+                   st.subheader("Insira o número de voltas completas na órbita:")   
+                   st.write("Para uma órbita ligada ($U_{eff,min} ≤ E < 0$), escolha também o número de órbitas que deseja traçar.")
+                   norbit = st.slider("Escolha entre 1 e 20",min_value=1, max_value=20, step = 1)
+                   result11 = st.button("Gerar Órbita")
+
+                   if st.session_state.get('button1') != True:
+                            st.session_state['button1'] = result11
+
+                   if st.session_state['button1'] == True:
+                           import numpy as np
+                           import matplotlib.pyplot as plt
+                           import sympy as sp
+                           from scipy.integrate import quad
+                           import math 
+                           from matplotlib.patches import Circle
+                           if E==0:
+                               E=E+1e-10    
+                           coef = [- (l ** 2), (l ** 2) / 2, -1, -E]
+                           roots = np.roots(coef)
+                           tp1 = roots[2]
+                           tp2 = roots[1]
+                           tp3 = roots[0]
+
+                           eps = 0.00000001
+                           rst = 10*l/(E+0.5)
+                           ust = 1 / rst
+                           correction = 1.477
+
+                           if l > math.sqrt(12):
+                               if E < 0 and ust < tp2.real:
+                                   u1 = tp1.real * (1 + eps)
+                                   u2 = tp2.real * (1 - eps)
+                               elif 0 < E < vmax and ust < tp2.real:
+                                   u1 = ust
+                                   u2 = tp2.real * (1 - eps)
+                                   norbit = 1
+                               elif E < vmax and ust > tp3.real:
+                                   u1 = 0.5
+                                   u2 = tp3.real * (1 + eps)
+                                   norbit = 0.5
+                               elif E > vmax:
+                                   u1 = ust
+                                   u2 = 0.5
+                                   norbit = 0.5
+                           else:
+                               if E >= 0:
+                                   u1 = ust
+                                   u2 = 0.5
+                                   norbit = 0.5
+                               else:
+                                   u1 = tp1.real * (1 + eps)
+                                   u2 = 0.5
+                                   norbit = 0.5
+
+                           def theta(w):
+                               theta = (l/(2**(1/2)))*((E-v(w,l))**(-1/2))
+                               return theta
+
+                           delphi, erro = quad(theta, u1, u2)
+
+                           n = 1000
+                           #ui=np.arange(u1,u2/2,(u2/2 - u1)/n)
+                           #uf=np.arange(u2/2, u2, (u2 - u2/2)/(10*n))
+                           #uc=ui.extend(uf)
+                           #ud=reverse(uc)
+                           uc = np.arange(u1, u2, (u2 - u1)/n)
+                           ud = np.arange(u2, u1, (u1 - u2)/n)
+
+                           phi1 = []
+                           for i in range(len(uc)):
+                               a = quad(theta, u1, uc[i])
+                               phi1.append(abs(a[0]))
+
+                           phi2 = []
+                           for j in range(len(ud)):
+                               b = quad(theta, u2, ud[j])
+                               phi2.append(abs(b[0]))
+
+                           if norbit == 0.5:
+                               utotal = uc
+                           else:
+                               utotal = np.concatenate([uc, ud]*(norbit))
+
+                           accphi = [0]*(len(utotal))
+
+                           if norbit == 0.5:
+                               accphi = phi1
+                               x = [0] * (len(uc))
+                               y = [0] * (len(uc))
+                               for i in range(len(uc)):
+                                   x[i] = (math.cos(accphi[i])) / utotal[i] *correction
+                                   y[i] = (math.sin(accphi[i])) / utotal[i] *correction
+                           else:
+                               for i in range (norbit):
+                                   for j in range (n):
+                                       accphi[j+(2*i*n)] = 2 * i * delphi + phi1[j]
+                                       accphi[j+((2*i+1)*n)] = ((2*i)+1)*delphi + phi2[j]
+                               x = [0] * (2 * norbit * n)
+                               y = [0] * (2 * norbit * n)
+                               for i in range(2 * norbit * n):
+                                   x[i] = ((math.cos(accphi[i])) / utotal[i])*correction
+                                   y[i] = ((math.sin(accphi[i])) / utotal[i])*correction
+
+                           fig2 = plt.figure() 
+                           plt.plot(x, y, color="gold")
+                           plt.xlabel("x [km]")
+                           plt.ylabel("y [km]")
+                           circle = Circle((0,0), 2*1.477, color = 'dimgrey')
+                           plt.gca().add_patch(circle)
+                           plt.gca().set_aspect('equal')
+                           plt.axis([(-1 / u1-1)*1.477 , (1 / u1+1)*1.477, (-1 / u1-1)*1.477 , (1/u1 +1)*1.477])
+                           ax = plt.gca()
+                           ax.spines['bottom'].set_color('black')
+                           ax.tick_params(axis='x', colors='black')
+                           ax.tick_params(axis='y', colors='black')
+                           ax.spines['top'].set_color('black') 
+                           ax.spines['right'].set_color('black')
+                           ax.spines['left'].set_color('black')
+                           ax.xaxis.label.set_color('black')
+                           ax.yaxis.label.set_color('black')
+                           fig1.patch.set_facecolor('white')
+                           ax.set_facecolor("black")
+                           plt.show()
+                           st.pyplot(fig2)
+
+                           st.session_state['button1'] = False
 
 #@app.addapp(title='Raios de luz', icon="💡")
 #def app2():
