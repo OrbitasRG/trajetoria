@@ -212,6 +212,8 @@ elif selected == "Corpos Massivos":
             from matplotlib.patches import Circle
             if E==0:
                 E=E+1e-10
+            if E<vmin:
+                print("Você escolheu um valor de parâmetro de energia menor que o valor mínimo permitido. Escolha novamente um valor dentro do limite especificado.")   
                 
             coef = [- (l ** 2), (l ** 2) / 2, -1, -E]
             roots = np.roots(coef)
