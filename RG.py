@@ -165,7 +165,7 @@ elif selected == "Corpos Massivos":
             ax.xaxis.label.set_color('white')
             ax.yaxis.label.set_color('white')
             fig1.patch.set_facecolor('0E1117')
-            ax.set_facecolor('white')
+            ax.set_facecolor('black')
             plt.show()
             st.pyplot(fig1)
             
